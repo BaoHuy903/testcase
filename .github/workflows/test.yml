@@ -1,0 +1,42 @@
+name: Automated Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      aut:
+        description: 'Select Application Under Test (AUT)'
+        required: true
+        default: 'B2 (http://railwayb2.somee.com)'
+        type: choice
+        options:
+          - B1 (http://railwayb1.somee.com)
+          - B2 (http://railwayb2.somee.com)
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+      
+      - name: Display selected AUT environment
+        run: |
+          echo "Full URL: ${{ github.event.inputs.aut }}"
+          AUT_VALUE=$(echo "${{ github.event.inputs.aut }}" | cut -d' ' -f1)
+          echo "AUT_VALUE=$AUT_VALUE" >> $GITHUB_ENV
+      
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      
+      - name: Build with Gradle
+        run: ./gradlew build -DautEnvironment=${{ env.AUT_VALUE }}
+      
+      - name: Run tests with selected AUT
+        run: ./gradlew test -DautEnvironment=${{ env.AUT_VALUE }} --info
