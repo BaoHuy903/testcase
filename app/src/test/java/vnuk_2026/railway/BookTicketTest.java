@@ -29,7 +29,7 @@ public class BookTicketTest extends RailwayTest {
 
         homePage.navigateToBookTicketPage();
 
-        loginPage.login("example@udn.vn", "123456789");
+        loginPage.login("batoannguyen52@gmail.com", "123456789");
 
         homePage.navigateToBookTicketPage();
 

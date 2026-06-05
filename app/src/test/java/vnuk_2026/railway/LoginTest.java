@@ -22,8 +22,8 @@ public class LoginTest extends RailwayTest {
 
         homePage.navigateToLoginPage();
 
-        loginPage.login("example@udn.vn", "123456789");
+        loginPage.login("batoannguyen52@gmail.com", "123456789");
 
-        Assert.assertEquals(homePage.getGreetingText(), "Welcome example@udn.vn");
+        Assert.assertEquals(homePage.getGreetingText(), "Welcome batoannguyen52@gmail.com");
     }
 }

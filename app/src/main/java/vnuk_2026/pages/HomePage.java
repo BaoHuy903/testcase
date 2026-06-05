@@ -6,8 +6,9 @@ import vnuk_2026.utils.WebDriverUtils;
 
 public class HomePage {
 
-    private final By loginMenuBy = By.linkText("Login"); // locator
-    private final By bookTicketMenuBy = By.linkText("Book ticket"); // locator
+    private final By loginMenuBy = By.linkText("Login");
+    private final By bookTicketMenuBy = By.linkText("Book ticket");
+    private final By changePasswordMenuBy = By.linkText("Change password");
     private final By greetingLblBy = By.cssSelector("div.account strong");
 
     /**
@@ -36,6 +37,10 @@ public class HomePage {
         WebDriverUtils.get().findElement(By.linkText("Timetable")).click();
     }
 
+    public void navigateToChangePasswordPage() {
+        WebDriverUtils.get().findElement(changePasswordMenuBy).click();
+    }
+    
     public String getGreetingText() {
         return WebDriverUtils.get().findElement(greetingLblBy).getText();
     }
