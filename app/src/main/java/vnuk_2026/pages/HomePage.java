@@ -12,12 +12,9 @@ public class HomePage {
 
     /**
      * Navigate to Railways home page (/)
-     * Uses AUT environment parameter: B1 or B2 (default: B2)
      */
     public void open() {
-        String aut = System.getProperty("autEnvironment", "B2").toLowerCase();
-        String baseUrl = String.format("http://railwayb%s.somee.com", aut.replace("b", ""));
-        WebDriverUtils.get().get(baseUrl);
+        WebDriverUtils.get().get("http://railwayb2.somee.com");
     }
 
     /**

@@ -10,7 +10,12 @@ plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
 }
-
+java {
+    toolchain {
+        // Ép Gradle sử dụng Java 11 hoặc 17 (khuyên dùng 17)
+        languageVersion.set(JavaLanguageVersion.of(17)) 
+    }
+}
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
