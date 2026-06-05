@@ -16,7 +16,7 @@ public class ChangePasswordTest extends RailwayTest {
     ChangePasswordPage changePasswordPage = new ChangePasswordPage();
 
     private final String VALID_EMAIL = "batoannguyen52@gmail.com";
-    private final String DEFAULT_PASSWORD = "newPassword123@";
+    private final String DEFAULT_PASSWORD = "123456789"; // Mật khẩu mặc định ban đầu của tài khoản dùng để test đổi mật khẩu
 
     // Thông báo lỗi hiển thị ở khung đỏ cho các trường hợp CHA_002, CHA_003, CHA_004
     private final String GENERAL_ERROR_MSG = "Password change failed. Please correct the errors and try again.";
@@ -45,11 +45,10 @@ public class ChangePasswordTest extends RailwayTest {
 
     @Test
     public void CHA_001_changePasswordSuccessfully() {
-        // ĐÃ FIX: Sử dụng mật khẩu mới thực sự khác mật khẩu mặc định để test chính xác luồng đổi dữ liệu
-        String newPassword = "differentPassword123@"; 
+        String newPassword = "987654321"; // Mật khẩu mới dùng để đổi trong test case này
 
         try {
-            // Bước 1: Tiến hành đổi sang mật khẩu mới
+            // Tiến hành đổi sang mật khẩu mới
             changePasswordPage.changePassword(DEFAULT_PASSWORD, newPassword, newPassword);
             
             String expectedSuccessMsg = "Your password has been updated!"; 
@@ -67,19 +66,19 @@ public class ChangePasswordTest extends RailwayTest {
         // Để trống tất cả các trường dữ liệu đầu vào
         changePasswordPage.changePassword("", "", "");
         
-        // ĐÃ FIX: Kiểm tra chuỗi thông báo xuất hiện ở khung đỏ theo ảnh chụp thực tế
+        // Kiểm tra hiển thị thông báo lỗi chung ở khung đỏ
         Assert.assertTrue(changePasswordPage.getErrorMessage().contains(GENERAL_ERROR_MSG));
     }
 
     @Test
     public void CHA_003_changePasswordWithUnmatchedConfirmPassword() {
-        String newPassword = "differentPassword123@";
-        String unmatchedConfirmPassword = "unmatchedPassword123@";
+        String newPassword = "987654321"; // Mật khẩu mới dùng để đổi trong test case này
+        String unmatchedConfirmPassword = "0123456789"; // Confirm Password không khớp với New Password
 
         // Nhập Confirm Password không khớp với New Password
         changePasswordPage.changePassword(DEFAULT_PASSWORD, newPassword, unmatchedConfirmPassword);
         
-        // ĐÃ FIX: Kiểm tra chuỗi thông báo xuất hiện ở khung đỏ theo ảnh chụp thực tế
+        // Kiểm tra hiển thị thông báo lỗi chung ở khung đỏ
         Assert.assertTrue(changePasswordPage.getErrorMessage().contains(GENERAL_ERROR_MSG));
     }
 
@@ -89,19 +88,19 @@ public class ChangePasswordTest extends RailwayTest {
         
         changePasswordPage.changePassword(DEFAULT_PASSWORD, shortPassword, shortPassword);
         
-        // ĐÃ FIX: Kiểm tra chuỗi thông báo xuất hiện ở khung đỏ theo ảnh chụp thực tế
+        // Kiểm tra hiển thị thông báo lỗi chung ở khung đỏ
         Assert.assertTrue(changePasswordPage.getErrorMessage().contains(GENERAL_ERROR_MSG));
     }
 
     @Test
     public void CHA_005_changePasswordWithIncorrectCurrentPassword() {
         String wrongCurrentPassword = "wrongCurrentPassword123@";
-        String newPassword = "differentPassword123@";
+        String newPassword = "987654321"; // Mật khẩu mới dùng để đổi trong test case này
 
         // Nhập sai mật khẩu hiện tại
         changePasswordPage.changePassword(wrongCurrentPassword, newPassword, newPassword);
         
-        // ĐÃ FIX: Kiểm tra chuỗi thông báo xuất hiện ở khung đỏ riêng biệt theo ảnh chụp thực tế
+        // Kiểm tra hiển thị thông báo lỗi riêng ở khung đỏ
         Assert.assertTrue(changePasswordPage.getErrorMessage().contains(INCORRECT_CURRENT_PASSWORD_ERROR_MSG));
     }
 }
