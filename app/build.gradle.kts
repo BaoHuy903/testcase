@@ -41,4 +41,9 @@ application {
 tasks.named<Test>("test") {
     // Use TestNG for unit tests.
     useTestNG()
+    systemProperty("file.encoding", "UTF-8")
+}
+
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
 }

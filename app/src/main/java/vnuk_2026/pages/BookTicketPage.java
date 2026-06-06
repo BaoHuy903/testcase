@@ -58,10 +58,15 @@ public class BookTicketPage {
     }
 
     public void clickBookTicketButton() {
-        // Scroll to end
+        // Cuộn xuống cuối trang
         JavascriptExecutor js = (JavascriptExecutor) WebDriverUtils.get();
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-        WebDriverUtils.get().findElement(bookTicketBtnBy).click();
+        org.openqa.selenium.WebElement element = WebDriverUtils.get().findElement(bookTicketBtnBy);
+        try {
+            element.click();
+        } catch (org.openqa.selenium.ElementClickInterceptedException e) {
+            js.executeScript("arguments[0].click();", element);
+        }
     }
 
 }

@@ -22,22 +22,26 @@ public class TimeTableTest extends RailwayTest {
 
         Assert.assertEquals(
             timeTablePage.getDepartureTime("Đà Nẵng", "Sài Gòn"),
-            LocalTime.of(7, 20)
+            LocalTime.of(7, 20),
+            "Giờ khởi hành từ Đà Nẵng đi Sài Gòn không chính xác."
         );
 
         Assert.assertEquals(
             timeTablePage.getDepartureTime("Đà Nẵng", "Nha Trang"),
-            LocalTime.of(14, 0)
+            LocalTime.of(14, 0),
+            "Giờ khởi hành từ Đà Nẵng đi Nha Trang không chính xác."
         );
 
         Assert.assertEquals(
             timeTablePage.getDepartureTime("Đà Nẵng", "Huế"),
-            LocalTime.of(18, 0)
+            LocalTime.of(18, 0),
+            "Giờ khởi hành từ Đà Nẵng đi Huế không chính xác."
         );
 
         Assert.assertEquals(
             timeTablePage.getDepartureTime("Đà Nẵng", "Quảng Ngãi"),
-            LocalTime.of(6, 30)
+            LocalTime.of(6, 30),
+            "Giờ khởi hành từ Đà Nẵng đi Quảng Ngãi không chính xác."
         );
     }
 
@@ -56,7 +60,7 @@ public class TimeTableTest extends RailwayTest {
         .arriveTime(LocalTime.of(14, 0))
         .build();
 
-        Assert.assertEquals(secondTrain, expectedTrain);
+        Assert.assertEquals(secondTrain, expectedTrain, "Thông tin của tàu thứ hai không đúng với kỳ vọng.");
     }
 
 }

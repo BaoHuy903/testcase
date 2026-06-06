@@ -15,7 +15,7 @@ public class TimeTablePage {
 
     private final By tableHeadersBy = By.xpath("//tr/th");
     private final By tableRowBy = By.xpath("//tbody/tr");
-    // css: tbody > tr
+    // css selector: tbody > tr
     private final static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm");
 
     
@@ -35,12 +35,12 @@ public class TimeTablePage {
         return LocalTime.parse(departureTimeCell.getText(), formatter);
     }
 
-    public Train getTrainByIndex(int rowIndex) { // rowIndex starts at 1
+    public Train getTrainByIndex(int rowIndex) { // rowIndex bắt đầu từ 1
         var headers = getTableHeaders();
 
         WebElement row = WebDriverUtils.get()
         .findElements(tableRowBy)
-        .get(rowIndex - 1); // 0-based index
+        .get(rowIndex - 1); // chỉ số bắt đầu từ 0
 
         List<WebElement> cells = row.findElements(By.tagName("td"));
 

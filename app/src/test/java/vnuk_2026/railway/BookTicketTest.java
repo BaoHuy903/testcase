@@ -11,11 +11,11 @@ import vnuk_2026.pages.LoginPage;
 
 public class BookTicketTest extends RailwayTest {
     
-    HomePage homePage = new HomePage();
-    LoginPage loginPage = new LoginPage();
-    BookTicketPage bookTicketPage = new BookTicketPage();
+    private final HomePage homePage = new HomePage();
+    private final LoginPage loginPage = new LoginPage();
+    private final BookTicketPage bookTicketPage = new BookTicketPage();
 
-    BookTicketForm data2 = BookTicketForm.builder()
+    private final BookTicketForm data2 = BookTicketForm.builder()
             .deparDate(LocalDate.now().plusWeeks(1))
             .departFrom("Đà Nẵng")
             .arriveTo("Nha Trang")
@@ -29,7 +29,7 @@ public class BookTicketTest extends RailwayTest {
 
         homePage.navigateToBookTicketPage();
 
-        loginPage.login("example@udn.vn", "123456789");
+        loginPage.login("test@vnuk.vn", "123456789");
 
         homePage.navigateToBookTicketPage();
 
